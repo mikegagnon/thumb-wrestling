@@ -12,4 +12,6 @@ function createThumbWrestling(boardId) {
             $("#" + rowId).append("<div id='" + cellId + "' class='cell'></div>");
         }
     }
+
+    $("#cell-2-2").append("<img src='red-arrow.png'>")
 }
