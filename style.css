@@ -12,3 +12,17 @@
     background-color: lightgray;
     line-height: 50px;
 }
+
+.right {}
+
+.down {
+    transform: rotate(90deg);
+}
+
+.left {
+    transform: rotate(180deg);
+}
+
+.up {
+    transform: rotate(270deg);
+}
