@@ -1,6 +1,7 @@
 
 var numRows = 10;
 var numCols = 10;
+var gameOver = false;
 
 var arrows = {
     red: {
@@ -18,6 +19,16 @@ var arrows = {
 var colors = ["red", "green"];
 
 document.onkeydown = keydown;
+
+function getOppositeColor(color) {
+    if (color == "red") {
+        return "green";
+    } else if (color == "green") {
+        return "red";
+    } else {
+        console.error("Bad color: " + color);
+    }
+}
 
 function getCellId(row, col) {
     return "#cell-" + row + "-" + col;   
@@ -75,21 +86,31 @@ function drdc(direction) {
 }
 
 function move(color, direction) {
-    //$(arrowId).removeClass("up down left right");
-    //$(arrowId).addClass(direction);
 
     var [dr, dc] = drdc(direction);
+
+    newRow = arrows[color].row + dr;
+    newCol = arrows[color].col + dc;
+
+    var oppositeColor = getOppositeColor(color);
+
+    var opponentRow = arrows[oppositeColor].row;
+    var opponentCol = arrows[oppositeColor].col;
+
+    if (newRow == opponentRow && newCol == opponentCol) {
+        gameOver = true;
+        newRow = arrows[color].row;
+        newCol = arrows[color].col;
+        $(".cell").css("background-color", "pink");
+    } else {
+        arrows[color].row = newRow;
+        arrows[color].col = newCol;
+    }
 
     var arrowId = getArrowId(color);
     $("#" + arrowId).remove();
 
-    arrows[color].row += dr;
-    arrows[color].col += dc;
-
-    var row = arrows[color].row;
-    var col = arrows[color].col;
-
-    var cellId = getCellId(row, col);
+    var cellId = getCellId(newRow, newCol);
     var imgTag = getImgTag(color, direction);
 
     $(cellId).append(imgTag);
@@ -97,6 +118,10 @@ function move(color, direction) {
 }
 
 function keydown(event) {
+
+    if (gameOver) {
+        return;
+    }
 
     // diable browser scrolling on arrow keys
     if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
@@ -137,7 +162,6 @@ function keydown(event) {
     } else {
         return;
     }
-
 
     move(color, direction);
 }
