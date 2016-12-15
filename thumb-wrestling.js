@@ -5,13 +5,13 @@ var gameOver = false;
 
 var arrows = {
     red: {
-        row: numRows / 2,
-        col: numCols / 2,
+        row: numRows / 2 - 1,
+        col: numCols / 2 - 1,
         dir: "right"
     },
     green: {
-        row: numRows / 2,
-        col: numCols / 2 + 1,
+        row: numRows / 2 - 1 ,
+        col: numCols / 2,
         dir: "left"
     }
 };
@@ -19,6 +19,18 @@ var arrows = {
 var colors = ["red", "green"];
 
 document.onkeydown = keydown;
+
+function getOppositeDirection(dir) {
+    if (dir == "up") {
+        return "down";
+    } else if (dir == "down") {
+        return "up";
+    } else if (dir == "left") {
+        return "right";
+    } else if (dir == "right") {
+        return "left";
+    } 
+}
 
 function getOppositeColor(color) {
     if (color == "red") {
@@ -102,18 +114,33 @@ function move(color, direction) {
     newRow = arrows[color].row + dr;
     newCol = arrows[color].col + dc;
 
+    if (newRow < 0 ||
+        newRow >= numRows ||
+        newCol < 0 ||
+        newCol >= numCols) {
+        return;
+    }
+
     var oppositeColor = getOppositeColor(color);
 
     var opponentRow = arrows[oppositeColor].row;
     var opponentCol = arrows[oppositeColor].col;
+    var opponentDirection = arrows[oppositeColor].dir;
 
-    if (newRow == opponentRow && newCol == opponentCol) {
+    var oppositeDirection = getOppositeDirection(direction);
+
+    var collision = newRow == opponentRow && newCol == opponentCol;
+
+    if (collision && opponentDirection != oppositeDirection) {
+
         gameOver = true;
         newRow = arrows[color].row;
         newCol = arrows[color].col;
 
         var cellColor = getLightColor(color);
         $(".cell").css("background-color", cellColor);
+    } else if (collision) {
+        return;
     } else {
         arrows[color].row = newRow;
         arrows[color].col = newCol;
