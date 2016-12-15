@@ -54,7 +54,9 @@ Just create and save a blank file for now.
 
 ### See result
 
-[View `index.html`]()
+[View `index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture01/index.html)
+
+It's just a blank page.
 
 ## <a name="lec2">Lecture 2. Detecting key presses</a>
 
