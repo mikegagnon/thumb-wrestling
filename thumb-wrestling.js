@@ -104,19 +104,41 @@ function keydown(event) {
     }
 
     var direction;
+    var color;
+
+    var char = String.fromCharCode(event.which)
+
+    console.log(char)
 
     if (event.keyCode == '38') {
         direction = "up";
+        color = "red";
     } else if (event.keyCode == '40') {
         direction = "down";
+        color = "red";
     } else if (event.keyCode == '37') {
         direction = "left";
+        color = "red";
     } else if (event.keyCode == '39') {
         direction = "right";
+        color = "red";
+    } else if (char == "W") {
+        direction = "up";
+        color = "green";
+    } else if (char == "S") {
+        direction = "down";
+        color = "green";
+    } else if (char == "A") {
+        direction = "left";
+        color = "green";
+    } else if (char == "D") {
+        direction = "right";
+        color = "green";
     } else {
         return;
     }
 
-    move("green", direction);
+
+    move(color, direction);
 }
 
