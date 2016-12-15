@@ -2,10 +2,35 @@
 var numRows = 10;
 var numCols = 10;
 
-var redRow = 2;
-var redCol = 2;
+var arrows = {
+    red: {
+        row: numRows / 2,
+        col: numCols / 2,
+        dir: "right"
+    },
+    green: {
+        row: numRows / 2,
+        col: numCols / 2 + 1,
+        dir: "left"
+    }
+};
+
+var colors = ["red", "green"];
 
 document.onkeydown = keydown;
+
+function getCellId(row, col) {
+    return "#cell-" + row + "-" + col;   
+}
+
+function getArrowId(color) {
+    return color + "-arrow";
+}
+
+function getImgTag(color, dir) {
+    var src = color + "-arrow.png"
+    return "<img id='" + getArrowId(color) + "' src='" + src + "' class='" + dir + "'>"
+}
 
 function createThumbWrestling(boardId) {
 
@@ -18,7 +43,19 @@ function createThumbWrestling(boardId) {
         }
     }
 
-    $("#cell-2-2").append("<img id='red-arrow' src='red-arrow.png' class='up'>")
+    for (var i = 0; i < colors.length; i++) {
+        var color = colors[i];
+        var row = arrows[color].row;
+        var col = arrows[color].col;
+        var dir = arrows[color].dir;
+
+        var cellId = getCellId(row, col);
+        var arrowId = getArrowId(color);
+        var imgTag = getImgTag(color, dir);
+
+        $(cellId).append(imgTag);
+    }
+
 }
 
 function drdc(direction) {
@@ -37,20 +74,25 @@ function drdc(direction) {
 
 }
 
-function move(direction) {
-    $("#red-arrow").removeClass("up down left right");
-    $("#red-arrow").addClass(direction);
+function move(color, direction) {
+    //$(arrowId).removeClass("up down left right");
+    //$(arrowId).addClass(direction);
 
     var [dr, dc] = drdc(direction);
 
-    $("#red-arrow").remove();
+    var arrowId = getArrowId(color);
+    $("#" + arrowId).remove();
 
-    redRow += dr;
-    redCol += dc;
+    arrows[color].row += dr;
+    arrows[color].col += dc;
 
-    var cellId = "#cell-" + redRow + "-" + redCol;
+    var row = arrows[color].row;
+    var col = arrows[color].col;
 
-    $(cellId).append("<img id='red-arrow' src='red-arrow.png' class='"+ direction + "'>")
+    var cellId = getCellId(row, col);
+    var imgTag = getImgTag(color, direction);
+
+    $(cellId).append(imgTag);
 
 }
 
@@ -75,6 +117,6 @@ function keydown(event) {
         return;
     }
 
-    move(direction);
+    move("green", direction);
 }
 
