@@ -9,7 +9,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
 
 # Contents
 
-- PART 1. JAVASCRIPT
+- [PART 1. JAVASCRIPT](#part1)
   - [Lecture 1. Initial setup](#lec1)
   - [Lecture 2. Detecting key presses](#lec2)
 
