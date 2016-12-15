@@ -12,7 +12,6 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
 - PART 1. JAVASCRIPT
   - [Lecture 1. Initial setup](#lec1)
   - [Lecture 2. Detecting key presses](#lec2)
-  -
 
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
