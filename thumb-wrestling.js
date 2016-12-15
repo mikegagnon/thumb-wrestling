@@ -30,6 +30,16 @@ function getOppositeColor(color) {
     }
 }
 
+function getLightColor(color) {
+    if (color == "red") {
+        return "pink";
+    } else if (color == "green") {
+        return "lightgreen";
+    } else {
+        console.error("Bad color: " + color);
+    }
+}
+
 function getCellId(row, col) {
     return "#cell-" + row + "-" + col;   
 }
@@ -101,7 +111,9 @@ function move(color, direction) {
         gameOver = true;
         newRow = arrows[color].row;
         newCol = arrows[color].col;
-        $(".cell").css("background-color", "pink");
+
+        var cellColor = getLightColor(color);
+        $(".cell").css("background-color", cellColor);
     } else {
         arrows[color].row = newRow;
         arrows[color].col = newCol;
