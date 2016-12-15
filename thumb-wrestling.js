@@ -145,8 +145,6 @@ function keydown(event) {
 
     var char = String.fromCharCode(event.which)
 
-    console.log(char)
-
     if (event.keyCode == '38') {
         direction = "up";
         color = "red";
