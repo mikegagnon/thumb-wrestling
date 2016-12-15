@@ -52,6 +52,10 @@ rename the file to jquery.js, and put it in the same folder with `index.html`, `
 
 Just create and save a blank file for now.
 
+### See result
+
+[View `index.html`]()
+
 ## <a name="lec2">Lecture 2. Detecting key presses</a>
 
 In this game, players move their arrows by pressing keys on the keyboard.
