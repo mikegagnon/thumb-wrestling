@@ -54,7 +54,7 @@ Just create and save a blank file for now.
 
 ### See result
 
-[View `index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture01/index.html)
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture01/index.html)
 
 It's just a blank page.
 
@@ -82,5 +82,8 @@ document.onkeydown = keydown;
 Now, whenever someone presses a key, the `keydown (...)` function will be called,
 and an alert will pop up.
 
+### See result
 
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/index.html)
 
+Press some keys.
