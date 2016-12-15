@@ -109,6 +109,8 @@ function drdc(direction) {
 
 function move(color, direction) {
 
+    arrows[color].dir = direction;
+
     var [dr, dc] = drdc(direction);
 
     newRow = arrows[color].row + dr;
