@@ -63,6 +63,8 @@ It's just a blank page.
 In this game, players move their arrows by pressing keys on the keyboard.
 Therefore, you need to write JavaScript that detects whenever a key is pressed.
 
+### Step 1. Detecting a keypress
+
 In `thumb-wrestling.js`, write a function called `keydown(event)`:
 
 ```js
@@ -82,8 +84,10 @@ document.onkeydown = keydown;
 Now, whenever someone presses a key, the `keydown (...)` function will be called,
 and an alert will pop up.
 
-### See result
+#### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/index.html)
 
 Press some keys.
+
+### Step 2. Figuring out which key was pressed
