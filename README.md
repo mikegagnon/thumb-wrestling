@@ -91,3 +91,26 @@ View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step0
 Press some keys.
 
 ### Step 2. Figuring out which key was pressed
+
+When the browser calls the `keydown` function, it passes it an `event` object.
+
+`event.keyCode` indicates which key was pressed. For example:
+
+- If `event.keyCode == 38`, then that means the up key was pressed
+- If `event.keyCode == 87`, then that means the W key was pressed
+
+We are only interested in detecting (1) keypresses for the arrow keys (for the red player),
+and (2) keypresses for W, A, S, D (for the green player).
+
+Here's a table that shows the keyCode values associated with every key we're interesetd in.
+
+| `keyCode` | Key     |
+| --------- | ------- |
+| 87        | W       |
+| 83        | S       |
+| 65        | A       |
+| 68        | D       |
+| 38        | `up`    |
+| 40        | `down`  |
+| 37        | `left`  |
+| 39        | `right` |
