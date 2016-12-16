@@ -86,7 +86,7 @@ and an alert will pop up.
 
 #### See result
 
-View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/index.html)
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step01/index.html)
 
 Press some keys.
 
