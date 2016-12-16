@@ -158,48 +158,39 @@ function move(color, direction) {
 
 }
 
+function getPlayerMovment(keyCode) {
+
+    var keyCodeMap = {
+        87: ["green", "up"],
+        83: ["green", "down"],
+        65: ["green", "left"],
+        68: ["green", "right"],
+        38: ["red", "up"],
+        40: ["red", "down"],
+        37: ["red", "left"],
+        39: ["red", "right"]
+    };
+
+    return keyCodeMap[keyCode];
+}
+
 function keydown(event) {
 
     if (gameOver) {
         return;
     }
 
-    // diable browser scrolling on arrow keys
-    if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
-        event.preventDefault();
+    var playerMovement = getPlayerMovment(event.keyCode);
+
+    if (playerMovement == undefined) {
+        return;
     }
 
-    var direction;
-    var color;
+    var [color, direction] = playerMovement;
 
-    var char = String.fromCharCode(event.which)
-
-    if (event.keyCode == '38') {
-        direction = "up";
-        color = "red";
-    } else if (event.keyCode == '40') {
-        direction = "down";
-        color = "red";
-    } else if (event.keyCode == '37') {
-        direction = "left";
-        color = "red";
-    } else if (event.keyCode == '39') {
-        direction = "right";
-        color = "red";
-    } else if (char == "W") {
-        direction = "up";
-        color = "green";
-    } else if (char == "S") {
-        direction = "down";
-        color = "green";
-    } else if (char == "A") {
-        direction = "left";
-        color = "green";
-    } else if (char == "D") {
-        direction = "right";
-        color = "green";
-    } else {
-        return;
+    // diable browser scrolling on arrow keys
+    if (color == "red") {
+        event.preventDefault();
     }
 
     move(color, direction);
