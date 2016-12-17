@@ -357,3 +357,7 @@ Therefore, the resultant HTML looks like this:
   </script>
 </html>
 ```
+
+### Step 3. Adding a single cell
+
+Now we're going to modify `createThumbWrestling(...)` to add a single cell to board, instead of saying Hello.
