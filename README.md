@@ -86,8 +86,76 @@ and an alert will pop up.
 
 #### See result
 
-View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/index.html)
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step01/index.html)
 
 Press some keys.
 
 ### Step 2. Figuring out which key was pressed
+
+When the browser calls the `keydown` function, it passes it an `event` object.
+
+`event.keyCode` indicates which key was pressed. For example:
+
+- If `event.keyCode == 38`, then that means the up key was pressed
+- If `event.keyCode == 87`, then that means the W key was pressed
+
+We are only interested in detecting (1) keypresses for the arrow keys (for the red player),
+and (2) keypresses for W, A, S, D (for the green player).
+
+Here's a table that shows the keyCode values associated with every key we're interesetd in.
+
+| `keyCode` | Key     |
+| --------- | ------- |
+| 87        | W       |
+| 83        | S       |
+| 65        | A       |
+| 68        | D       |
+| 38        | `up`    |
+| 40        | `down`  |
+| 37        | `left`  |
+| 39        | `right` |
+
+Using the above table, we create a new function `getPlayerMovment(keyCode)`:
+
+```js
+function getPlayerMovment(keyCode) {
+
+    var keyCodeMap = {
+        87: ["green", "up"],
+        83: ["green", "down"],
+        65: ["green", "left"],
+        68: ["green", "right"],
+        38: ["red", "up"],
+        40: ["red", "down"],
+        37: ["red", "left"],
+        39: ["red", "right"]
+    };
+
+    return keyCodeMap[keyCode];
+}
+```
+
+Here's what the function does:
+
+- If the keyCode is for a key we're uninterested in, it returns `undefined`
+- Otherwise (if the keyCode is associated with a player), return the color of the keyCode's player and the direction associated with that keyCode
+
+Then, modify the `keydown(...)` function:
+
+```js
+function keydown(event) {
+
+    var playerMovement = getPlayerMovment(event.keyCode);
+
+    // If the user pressed a key we're uninterested in
+    if (playerMovement == undefined) {
+        return;
+    }
+
+    var [color, direction] = playerMovement;
+
+    alert(color + " " + direction);
+}
+```
+
+The code is straightforward: if the user presses one of the player's keys it pops up an alert saying the player color and the direction.
