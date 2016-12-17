@@ -214,3 +214,53 @@ View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step0
 Press some keys, including the arrow keys and w, a, s, d. 
 
 ## <a name="lec3">Lecture 3. Creating the board</a>
+
+Recall, in the [Lights Out](https://github.com/mikegagnon/lights-out)
+game there was a 4 &times; 4 grid of lights. The HTML to produce this grid
+was tedious and repetitive:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lights Out</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="lights-out.js"></script>
+    <script src="jquery.js"></script>
+  </head>
+  <body>
+  <div class="row">
+    <div class="light" id="light-0-0" onclick="lightClick(0, 0)"></div>
+    <div class="light" id="light-0-1" onclick="lightClick(0, 1)"></div>
+    <div class="light" id="light-0-2" onclick="lightClick(0, 2)"></div>
+    <div class="light" id="light-0-3" onclick="lightClick(0, 3)"></div>
+  </div>
+  <div class="row">
+    <div class="light" id="light-1-0" onclick="lightClick(1, 0)"></div>
+    <div class="light" id="light-1-1" onclick="lightClick(1, 1)"></div>
+    <div class="light" id="light-1-2" onclick="lightClick(1, 2)"></div>
+    <div class="light" id="light-1-3" onclick="lightClick(1, 3)"></div>
+  </div>
+  <div class="row">
+    <div class="light" id="light-2-0" onclick="lightClick(2, 0)"></div>
+    <div class="light" id="light-2-1" onclick="lightClick(2, 1)"></div>
+    <div class="light" id="light-2-2" onclick="lightClick(2, 2)"></div>
+    <div class="light" id="light-2-3" onclick="lightClick(2, 3)"></div>
+  </div>
+  <div class="row">
+    <div class="light" id="light-3-0" onclick="lightClick(3, 0)"></div>
+    <div class="light" id="light-3-1" onclick="lightClick(3, 1)"></div>
+    <div class="light" id="light-3-2" onclick="lightClick(3, 2)"></div>
+    <div class="light" id="light-3-3" onclick="lightClick(3, 3)"></div>
+  </div>
+  </body>
+</html>
+```
+
+In this game, there is a 10 &times; 10 grid of cells.
+It would be even more tedious and repetitive to hand write the HTML
+for 100 cells.
+
+To avoid such tedium, and to be more elegant,
+we will write a short bit of code that
+will produce the HTML for the grid of cells.
