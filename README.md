@@ -136,5 +136,26 @@ function getPlayerMovment(keyCode) {
 ```
 
 Here's what the function does:
+
 - If the keyCode is for a key we're uninterested in, it returns `undefined`
 - Otherwise (if the keyCode is associated with a player), return the color of the keyCode's player and the direction associated with that keyCode
+
+Then, modify the `keydown(...)` function:
+
+```js
+function keydown(event) {
+
+    var playerMovement = getPlayerMovment(event.keyCode);
+
+    // If the user pressed a key we're uninterested in
+    if (playerMovement == undefined) {
+        return;
+    }
+
+    var [color, direction] = playerMovement;
+
+    alert(color + " " + direction);
+}
+```
+
+The code is straightforward: if the user presses one of the player's keys it pops up an alert saying the player color and the direction.
