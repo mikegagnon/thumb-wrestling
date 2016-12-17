@@ -114,3 +114,27 @@ Here's a table that shows the keyCode values associated with every key we're int
 | 40        | `down`  |
 | 37        | `left`  |
 | 39        | `right` |
+
+Using the above table, we create a new function `getPlayerMovment(keyCode)`:
+
+```js
+function getPlayerMovment(keyCode) {
+
+    var keyCodeMap = {
+        87: ["green", "up"],
+        83: ["green", "down"],
+        65: ["green", "left"],
+        68: ["green", "right"],
+        38: ["red", "up"],
+        40: ["red", "down"],
+        37: ["red", "left"],
+        39: ["red", "right"]
+    };
+
+    return keyCodeMap[keyCode];
+}
+```
+
+Here's what the function does:
+- If the keyCode is for a key we're uninterested in, it returns `undefined`
+- Otherwise (if the keyCode is associated with a player), return the color of the keyCode's player and the direction associated with that keyCode
