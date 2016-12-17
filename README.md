@@ -165,3 +165,43 @@ The code is straightforward: if the user presses one of the player's keys it pop
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step02/index.html)
 
 Press some keys, including the arrow keys and w, a, s, d.
+
+### Step 3. Disable browser scrolling
+
+By default, the browser scrolls when an arrow key is pressed.
+
+We want to disable this default behavior, since we don't want the web page to
+scroll when the red player presses an arrow key.
+
+To accomplish this feat we modify the `keydown(...)` function, by adding the
+following code:
+
+```js
+// disable browser scrolling on arrow keys
+if (color == "red") {
+    event.preventDefault();
+}
+```
+
+The new `keydown(...)` function looks like this:
+
+```js
+function keydown(event) {
+
+    var playerMovement = getPlayerMovment(event.keyCode);
+
+    // If the user pressed a key we're uninterested in
+    if (playerMovement == undefined) {
+        return;
+    }
+
+    var [color, direction] = playerMovement;
+
+    // disable browser scrolling on arrow keys
+    if (color == "red") {
+        event.preventDefault();
+    }
+
+    alert(color + " " + direction);
+}
+```
