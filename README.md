@@ -164,7 +164,7 @@ The code is straightforward: if the user presses one of the player's keys it pop
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step02/index.html)
 
-Press some keys, including the arrow keys and w, a, s, d.
+Press some keys, including the arrow keys and w, a, s, d. 
 
 ### Step 3. Disable browser scrolling
 
@@ -205,3 +205,9 @@ function keydown(event) {
     alert(color + " " + direction);
 }
 ```
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step03/index.html)
+
+Press some keys, including the arrow keys and w, a, s, d. 
