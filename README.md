@@ -159,3 +159,9 @@ function keydown(event) {
 ```
 
 The code is straightforward: if the user presses one of the player's keys it pops up an alert saying the player color and the direction.
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture02/step02/index.html)
+
+Press some keys, including the arrow keys and w, a, s, d.
