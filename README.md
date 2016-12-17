@@ -264,3 +264,96 @@ for 100 cells.
 To avoid such tedium, and to be more elegant,
 we will write a short bit of code that
 will produce the HTML for the grid of cells.
+
+### Step 1. CSS
+
+But first, let's write the CSS for the cell elements:
+
+#### `style.css`
+
+```
+.row {
+    clear: left;
+}
+
+.cell {
+    height: 50px;
+    width: 50px;
+    margin-left: 1px;
+    margin-top: 1px;
+    float: left; 
+    background-color: lightgray;
+    line-height: 50px;
+}
+```
+
+Notice, it is very similar to the Lights Out CSS.
+
+### Step 2. `createThumbWrestling(...)`
+
+Add `<div id="board"></div>` inside the `<body>` tag.
+
+Then add the following `<script>` element after the `<body>` tag.
+
+```html
+<script type="text/javascript">
+  createThumbWrestling("#board");
+</script>
+```
+
+Finally, add the following function to `thumb-wrestling.js`:
+
+```js
+function createThumbWrestling(boardId) {
+    $(boardId).text("Hello.")
+}
+```
+
+Your `index.html` file should look like this:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thumb Wrestling</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="jquery.js"></script>
+  <script src="thumb-wrestling.js"></script>
+</head>
+  <body>
+    <div id="board"></div>
+  </body>
+  <script type="text/javascript">
+    createThumbWrestling("#board");
+  </script>
+</html>
+```
+
+Here's what's going on.
+
+The `<div id="board"></div>` will contain the grid of cells.
+
+When the browser calls `createThumbWrestling("#board")` it executes `$(boardId).text("Hello.")`.
+It first executes `$("#board")` which is a jQuery function that selects the `<div>` with `id`
+equal to `board`. Then the `.text("Hello")` function call appends `Hello` inside the 
+`<div>` tag.
+
+Therefore, the resultant HTML looks like this:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thumb Wrestling</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="jquery.js"></script>
+  <script src="thumb-wrestling.js"></script>
+</head>
+  <body>
+    <div id="board">Hello.</div>
+  </body>
+  <script type="text/javascript">
+    createThumbWrestling("#board");
+  </script>
+</html>
+```
