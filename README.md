@@ -12,7 +12,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
 - [PART 1. JAVASCRIPT](#part1)
   - [Lecture 1. Initial setup](#lec1)
   - [Lecture 2. Detecting key presses](#lec2)
-  - [Lecture 2. Creating the board](#lec3)
+  - [Lecture 3. Creating the board](#lec3)
 
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
