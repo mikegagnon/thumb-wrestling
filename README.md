@@ -13,7 +13,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
   - [Lecture 1. Initial setup](#lec1)
   - [Lecture 2. Detecting key presses](#lec2)
   - [Lecture 3. Creating the board](#lec3)
-
+  - [Lecture 4. Arrows](#lec4)
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
 
@@ -503,3 +503,5 @@ function createThumbWrestling(boardId) {
 #### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step05/index.html)
+
+## <a name="lec4">Lecture 4. Arrows</a>
