@@ -545,4 +545,55 @@ gameState["green"].dir
 
 This data structure is convenient, as we'll see later.
 
+### Step 2. Drawing arrows
 
+First download these image files into your Thumb Wrestling directory:
+
+- [red-arrow.png](https://raw.githubusercontent.com/mikegagnon/thumb-wrestling/master/red-arrow.png)
+- [green-arrow.png](https://raw.githubusercontent.com/mikegagnon/thumb-wrestling/master/green-arrow.png)
+
+Then define the following function:
+
+```js
+function drawArrow(color) {
+    var row = gameState[color].row;
+    var col = gameState[color].col;
+
+    var cellId = "#cell-" + row + "-" + col;
+    var arrowId = color + "-arrow";
+
+    var src = color + "-arrow.png";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "''>";
+
+    $(cellId).append(imgTag);
+}
+```
+
+Its functionality and operation should be clear to you.
+
+Then, invoke the `drawArrow(...)` function inside the `createThumbWrestling(...)` function:
+
+```js
+function createThumbWrestling(boardId) {
+
+    for (var row = 0; row < numRows; row++) {
+        var rowId = "row-" + row;
+        var rowTag = "<div id='" + rowId + "' class='row'></div>"
+
+        $(boardId).append(rowTag);
+
+        for (var col = 0; col < numCols; col++) {
+            var cellId = "cell-" + row + "-" + col;
+            var cellTag = "<div id='" + cellId + "' class='cell'></div>";
+            $("#" + rowId).append(cellTag);
+        }
+    }
+
+    drawArrow("red");   // <----------------------------
+    drawArrow("green"); // <----------------------------
+}
+```
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture04/step02/index.html)
