@@ -331,7 +331,7 @@ Your `index.html` file should look like this:
 
 Here's what's going on.
 
-The `<div id="board"></div>` will contain the grid of cells.
+The `<div id="board"></div>` will contain the grid of cells (inside the `<div>`).
 
 When the browser calls `createThumbWrestling("#board")` it executes `$(boardId).text("Hello.")`.
 It first executes `$("#board")` which is a jQuery function that selects the `<div>` with `id`
