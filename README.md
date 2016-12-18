@@ -597,3 +597,7 @@ function createThumbWrestling(boardId) {
 #### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture04/step02/index.html)
+
+Notice that both arrows point to the right, even though the green arrow points to the left (according to `gameState`).
+
+Soon, we will make the arrows point to the directions according to `gameState`. 
