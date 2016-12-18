@@ -387,7 +387,7 @@ Now, the dynamically generated HTML will look like this:
       <div class='cell'></div>
     </div>
   </body>
-  <script type="text/javascript">
+  <script type="tesxt/javascript">
     createThumbWrestling("#board");
   </script>
 </html>
@@ -396,3 +396,47 @@ Now, the dynamically generated HTML will look like this:
 #### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step03/index.html)
+
+### Step 4. Adding a row of cells
+
+In this step, we create a single row of cells.
+
+But first, we need to define `numRows` and `numCols` at the top of `thumb-wrestling.js`:
+
+```js
+var numRows = 10;
+var numCols = 10;
+```
+
+Now we can modify `createThumbWrestling(...)` as so:
+
+```js
+function createThumbWrestling(boardId) {
+
+    var row = 0;
+    var rowId = "row-" + row;
+    var rowTag = "<div id='" + rowId + "' class='row'></div>"
+
+    $(boardId).append(rowTag);
+
+    for (var col = 0; col < numCols; col++) {
+        var cellId = "cell-" + row + "-" + col;
+        var cellTag = "<div id='" + cellId + "' class='cell'></div>";
+        $("#" + rowId).append(cellTag);
+    }
+}
+```
+
+First we add a row `<div>` with `$(boardId).append(rowTag);`
+
+Next we have for-loop that adds each of the cells with `$("#" + rowId).append(cellTag);`.
+
+Observe that we select the board `<div>` by using `$(boardId)`,
+yet we select the row `<div>` by using `$("#" + rowId)` (with a pound sign prefixing `rowId`).
+You may wonder why we need to prefix `rowId` with a pound sign, but not `boardId`.
+Here's what's up: every time we select an element using jQuery (i.e. `$(elementId)`), we must
+prefix the `elementId` with a pound sign. Recall from `index.html` that we invoke
+`createThumbWrestling(boardId)` with `boardId` equal to `"#board"` -- therefore we select
+the board element simply with `$(boardId)` since the pound sign is already included in `boardId`.
+On the other hand, the `rowId` variable is not prefixed with a pound sign -- therefore
+we must select the row element with `$("#" + rowId)`.
