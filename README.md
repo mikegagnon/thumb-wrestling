@@ -305,7 +305,7 @@ Finally, add the following function to `thumb-wrestling.js`:
 
 ```js
 function createThumbWrestling(boardId) {
-    $(boardId).text("Hello.")
+    $(boardId).text("Hello.");
 }
 ```
 
