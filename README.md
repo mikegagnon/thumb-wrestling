@@ -360,4 +360,39 @@ Therefore, the resultant HTML looks like this:
 
 ### Step 3. Adding a single cell
 
-Now we're going to modify `createThumbWrestling(...)` to add a single cell to board, instead of saying Hello.
+Now, we're going to modify the `createThumbWrestling(...)` function to add a single cell to the board (instead of saying Hello).
+
+Modify `createThumbWrestling(...)` as so:
+
+```js
+function createThumbWrestling(boardId) {
+    var cellTag = "<div class='cell'></div>"
+    $(boardId).append(cellTag);
+}
+```
+
+Now, the dynamically generated HTML will look like this:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thumb Wrestling</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="jquery.js"></script>
+  <script src="thumb-wrestling.js"></script>
+</head>
+  <body>
+    <div id="board">
+      <div class='cell'></div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    createThumbWrestling("#board");
+  </script>
+</html>
+```
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step03/index.html)
