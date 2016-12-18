@@ -480,4 +480,26 @@ View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step0
 
 ### Step 5. Build the full grid
 
+Simply add a another for loop to iterate over the rows:
 
+```js
+function createThumbWrestling(boardId) {
+
+    for (var row = 0; row < numRows; row++) {
+        var rowId = "row-" + row;
+        var rowTag = "<div id='" + rowId + "' class='row'></div>"
+
+        $(boardId).append(rowTag);
+
+        for (var col = 0; col < numCols; col++) {
+            var cellId = "cell-" + row + "-" + col;
+            var cellTag = "<div id='" + cellId + "' class='cell'></div>";
+            $("#" + rowId).append(cellTag);
+        }
+    }
+}
+```
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step05/index.html)
