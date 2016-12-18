@@ -441,6 +441,43 @@ the board element simply with `$(boardId)` since the pound sign is already inclu
 On the other hand, the `rowId` variable is not prefixed with a pound sign -- therefore
 we must select the row element with `$("#" + rowId)`.
 
-### See result
+Now, the dynamically generated HTML will look like this:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Thumb Wrestling</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="jquery.js"></script>
+    <script src="thumb-wrestling.js"></script>
+  </head>
+  <body>
+    <div id="board">
+      <div id="row-0" class="row">
+        <div id="cell-0-0" class="cell"></div>
+        <div id="cell-0-1" class="cell"></div>
+        <div id="cell-0-2" class="cell"></div>
+        <div id="cell-0-3" class="cell"></div>
+        <div id="cell-0-4" class="cell"></div>
+        <div id="cell-0-5" class="cell"></div>
+        <div id="cell-0-6" class="cell"></div>
+        <div id="cell-0-7" class="cell"></div>
+        <div id="cell-0-8" class="cell"></div>
+        <div id="cell-0-9" class="cell"></div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    createThumbWrestling("#board");
+  </script>
+</html>
+```
+
+#### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step04/index.html)
+
+### Step 5. Build the full grid
+
+
