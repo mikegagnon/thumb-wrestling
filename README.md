@@ -392,3 +392,7 @@ Now, the dynamically generated HTML will look like this:
   </script>
 </html>
 ```
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step03/index.html)
