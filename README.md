@@ -440,3 +440,7 @@ prefix the `elementId` with a pound sign. Recall from `index.html` that we invok
 the board element simply with `$(boardId)` since the pound sign is already included in `boardId`.
 On the other hand, the `rowId` variable is not prefixed with a pound sign -- therefore
 we must select the row element with `$("#" + rowId)`.
+
+### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step04/index.html)
