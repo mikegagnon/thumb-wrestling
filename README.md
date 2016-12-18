@@ -13,7 +13,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
   - [Lecture 1. Initial setup](#lec1)
   - [Lecture 2. Detecting key presses](#lec2)
   - [Lecture 3. Creating the board](#lec3)
-
+  - [Lecture 4. Arrows](#lec4)
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
 
@@ -503,3 +503,46 @@ function createThumbWrestling(boardId) {
 #### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture03/step05/index.html)
+
+## <a name="lec4">Lecture 4. Arrows</a>
+
+In this lecture, we add arrows to the game board.
+
+### Step 1. Game state
+
+Recall in the Lights Out game, we [stored the game state in a matrix](https://github.com/mikegagnon/lights-out#c1h2).
+
+A matrix isn't suitable for storing the game state in Thumb Wrestling, since we only need to keep track of
+two items: a red arrow, and a green arrow.
+
+We'll use the following data structure to keep track of the red and green arrows:
+
+```js
+var gameState = {
+    "red": {
+        row: numRows / 2 - 1,
+        col: numCols / 2 - 1,
+        dir: "right"
+    },
+    "green": {
+        row: numRows / 2 - 1 ,
+        col: numCols / 2,
+        dir: "left"
+    }
+};
+```
+
+Type in that code at the top of `thumb-wrestling.js`, just below the definitions for `numRows` and `numCols`.
+
+Now, we can access the `gameState` like so:
+
+```js
+gameState["red"].row
+gameState["green"].dir
+
+// etc.
+```
+
+This data structure is convenient, as we'll see later.
+
+
