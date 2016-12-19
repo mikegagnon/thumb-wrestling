@@ -798,6 +798,8 @@ Modify `thumb-wrestling.js` to:
 1. Detect when a victory occurs
 2. Freeze the game when a victory occurs
  
+- [Hint 1](#c4hint1)
+
 #### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge04/index.html)
@@ -1084,3 +1086,9 @@ function move(color, direction) {
 ```
 
 Back to [Challenge 3](#c3).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c4hint1">Challenge 4, Hint 1</a>
+
+Back to [Challenge 4](#c4).
