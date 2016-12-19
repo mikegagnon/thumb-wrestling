@@ -779,7 +779,7 @@ Modify `thumb-wrestling.js` so that arrows cannot go out of bounds.
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge02/index.html)
 
-## <a name="c3">Challenge 2. Collisions</a>
+## <a name="c3">Challenge 3. Collisions</a>
 
 Modify `thumb-wrestling.js` so that when one arrow bumps into the other, it stays put.
 
