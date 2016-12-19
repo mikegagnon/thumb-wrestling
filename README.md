@@ -19,6 +19,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
   - [Challenge 2. Stay in bounds](#c2)
   - [Challenge 3. Collisions](#c3)
   - [Challenge 4. Detecting victory](#c4)
+  - [Challenge 5. Visualizing victory](#c5)
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
 
@@ -812,6 +813,27 @@ Hints:
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge04/index.html)
  
+## <a name="c5">Challenge 5. Visualizing victory</a>
+
+Modify `thumb-wrestling.js` to visualize a victory as so:
+
+1. If red wins, change the color of every cell to "pink"
+2. If green wins, change the color of every cell to "lightgreen"
+
+But first, you need to learn a little more jQuery.
+
+Recall, `$("#" + elementId)` selects the element with `id` equal to `elementId`.
+
+You can use a slightly different jQuery invocation to select *all* the elements that have a particular class.
+
+`$("." + className)` selects *all* the elements that have class `className`.
+
+For example, to select every cell you could do:
+
+`$(".cell")`
+
+- [Hint 1](#c5hint1)
+- [Solution](#c5solution)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -1260,3 +1282,64 @@ function move(color, direction) {
 ```
 
 Back to [Challenge 4](#c4).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c5hint1">Challenge 4, Hint 1</a>
+
+`$(".cell").css("background", "pink")` changes every cell to have a pink background color.
+
+Back to [Challenge 5](#c5).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c5solution">Challenge 5, Solution</a>
+
+Define the following `drawVictory(...)` function:
+
+```js
+function drawVictory(color) {
+
+    var cellColor;
+
+    if (color == "green") {
+        cellColor = "lightgreen";
+    } else if (color == "red") {
+        cellColor = "pink";
+    } else {
+        console.error("Bad color: " + color);
+    }
+
+    $(".cell").css("background", cellColor);
+}
+```
+
+Then add one additional line to `move(...)`:
+
+```js
+function move(color, direction) {
+
+    if (gameOver) {
+        return;
+    }
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    var newRow = gameState[color].row + dr;
+    var newCol = gameState[color].col + dc;
+
+    if (occupied(newRow, newCol) && !facingEachOther()) {
+        gameOver = true;
+        drawVictory(color); // <---------------------------------------------------------
+    } else if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) {
+        gameState[color].row = newRow;
+        gameState[color].col = newCol;
+    }
+
+    drawArrow(color);
+}
+```
+
+Back to [Challenge 5](#c5).
