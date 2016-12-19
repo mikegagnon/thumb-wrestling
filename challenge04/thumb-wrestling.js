@@ -114,7 +114,7 @@ function move(color, direction) {
 
     if (occupied(newRow, newCol) && !facingEachOther()) {
         gameOver = true;
-    } if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) {
+    } else if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) {
         gameState[color].row = newRow;
         gameState[color].col = newCol;
     }
