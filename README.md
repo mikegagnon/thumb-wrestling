@@ -797,7 +797,9 @@ Modify `thumb-wrestling.js` to:
 
 1. Detect when a victory occurs
 2. Freeze the game when a victory occurs
- 
+
+Hints:
+
 - [Hint 1](#c4hint1)
 
 #### See result
@@ -1090,5 +1092,85 @@ Back to [Challenge 3](#c3).
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c4hint1">Challenge 4, Hint 1</a>
+
+A victory occurs when the following conditions hold:
+
+1. The arrow is attempting to move into an occupied cell
+2. The arrows are not facing each other
+
+Back to [Challenge 4](#c4).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c4hint2">Challenge 4, Hint 2</a>
+
+The arrows are facing each other when they are pointing in opposite directions.
+
+Back to [Challenge 4](#c4).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c4hint3">Challenge 4, Hint 3</a>
+
+- If one arrow is pointing up, then the opposite direction is down.
+- If one arrow is pointing left, then the opposite direction is right.
+
+etc.
+
+Back to [Challenge 4](#c4).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c4hint4">Challenge 4, Hint 4</a>
+
+Use these functions:
+
+```js
+function oppositeDirection(direction) {
+    var oppositeMap = {
+        "up": "down",
+        "down": "up",
+        "left": "right",
+        "right": "left"
+    }
+
+    return oppositeMap[direction];
+}
+
+// returns true iff the arrows are facing each other, i.e. the arrows
+// are facing opposite directions
+function facingEachOther() {
+    return gameState["red"].dir == oppositeDirection(gameState["green"].dir);
+}
+```
+
+Back to [Challenge 4](#c4).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c4hint5">Challenge 4, Hint 5</a>
+
+Modify the `move(...)` function as follows:
+
+```js
+function move(color, direction) {
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    var newRow = gameState[color].row + dr;
+    var newCol = gameState[color].col + dc;
+
+    if (occupied(newRow, newCol) && !facingEachOther()) { // <-------------------------------------------
+        // game over!
+    } else if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) {
+        gameState[color].row = newRow;
+        gameState[color].col = newCol;
+    }
+
+    drawArrow(color);
+}
+```
 
 Back to [Challenge 4](#c4).
