@@ -754,3 +754,74 @@ You do not need to worry about the following cases:
 
 But first, you need to learn a new jQuery method: `$("#" + elementId).remove();` removes the element with `id` equal to `elementId` from the HTML document. This will allow you to remove an arrow before redrawing it (otherwise, there would
 be many duplicate arrows left on the board).
+
+- [Hint 1](#c1hint1)
+- [Hint 2](#c1hint2)
+- [Hint 3](#c1hint3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### <a name="c1hint1">Challenge 1, Hint 1</a>
+
+There are two steps to handling arrow movement. Every time a movement key is pressed:
+
+1. Update the game state
+2. Update the graphical representation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### <a name="c1hint2">Challenge 1, Hint 2</a>
+
+To update the game state:
+
+In the `keyDown(...)` function replace the `alert(color + " " + direction);` line with
+`move(color, direction);`.
+
+Then define the function `move(color, direction)`:
+
+```js
+function move(color, direction) {
+    gameState[color].dir = direction;
+    gameState[color].row = // the arrow's new row
+    gameState[color].col = // the arrow's new column
+}
+```
+ 
+
+
