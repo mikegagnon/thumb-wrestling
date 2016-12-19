@@ -12,8 +12,20 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
 - [PART 1. JAVASCRIPT](#part1)
   - [Lecture 1. Initial setup](#lec1)
   - [Lecture 2. Detecting key presses](#lec2)
+    - Step 1. Detecting a keypress
+    - Step 2. Figuring out which key was pressed
+    - Step 3. Disable browser scrolling
   - [Lecture 3. Creating the board](#lec3)
+    - Step 1. CSS
+    - Step 2. `createThumbWrestling(...)`
+    - Step 3. Adding a single cell
+    - Step 4. Adding a row of cells
+    - Step 5. Build the full grid
   - [Lecture 4. Arrows](#lec4)
+    - Step 1. Game state
+    - Step 2. Drawing arrows
+    - Step 3. A dash of refactoring
+    - Step 4. Arrows point the correct direction
 - [PART 2. CHALLENGES](#part2)
   - [Challenge 1. Movement](#c1)
   - [Challenge 2. Stay in bounds](#c2)
