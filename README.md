@@ -18,6 +18,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
   - [Challenge 1. Movement](#c1)
   - [Challenge 2. Stay in bounds](#c2)
   - [Challenge 3. Collisions](#c3)
+  - [Challenge 4. Detecting victory](#c4)
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
 
@@ -789,6 +790,18 @@ Modify `thumb-wrestling.js` so that when one arrow bumps into the other, it stay
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge03/index.html)
 
+
+## <a name="c4">Challenge 4. Detecting victory</a>
+
+Modify `thumb-wrestling.js` to:
+
+1. Detect when a victory occurs
+2. Freeze the game when a victory occurs
+ 
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge04/index.html)
+ 
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
