@@ -752,7 +752,7 @@ You do not need to worry about the following cases:
 - Going out of bounds
 - Bumping into an opponent
 
-But first, you need to learn a new jQuery method: `$("#" + elementId).remove();` removes the element with `id` equal to `elementId` from the HTML document. This will allow you to remove an arrow before redrawing it (otherwise, there would
+But first, you need to learn a new jQuery method: `$("#" + elementId).remove()` removes the element with `id` equal to `elementId` from the HTML document. This will allow you to remove an arrow before redrawing it (otherwise, there would
 be many duplicate arrows left on the board).
 
 - [Hint 1](#c1hint1)
