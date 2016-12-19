@@ -569,9 +569,11 @@ function drawArrow(color) {
 }
 ```
 
-Its functionality and operation should be clear to you.
+This may be the first time you have seen the HTML `<img>` tag. If so, look it up on Google.
 
-Then, invoke the `drawArrow(...)` function inside the `createThumbWrestling(...)` function:
+Assuming you are familiar with `<img>`, the functionality and operation of `drawArrow(...)` should be clear to you.
+
+Invoke the `drawArrow(...)` function inside the `createThumbWrestling(...)` function:
 
 ```js
 function createThumbWrestling(boardId) {
@@ -684,3 +686,55 @@ function createThumbWrestling(boardId) {
     drawArrow("green");
 }
 ```
+
+### Step 4. Arrows point the correct direction
+
+We want each arrow to point in the correct direction (i.e. the graphical representation of each arrow should match
+`gameState[color].dir`).
+
+First, we need to add the following CSS into `style.css`:
+
+```css
+.right {
+    transform: rotate(0deg);
+}
+
+.down {
+    transform: rotate(90deg);
+}
+
+.left {
+    transform: rotate(180deg);
+}
+
+.up {
+    transform: rotate(270deg);
+}
+```
+
+Here's how it works: if an `<img>` tag has `class="down"`, then it's image will be rotated clockwise 90 degrees.
+Since `red-arrow.png` and `green-arrow.png` point to the right, rotating 90 degrees causes the arrow to point down.
+
+And so on for `0deg`, `180deg`, and `270deg`.
+
+Then, we update `drawArrow(...)` to rotate arrows:
+
+```js
+function drawArrow(color) {
+    var row = gameState[color].row;
+    var col = gameState[color].col;
+    var dir = gameState[color].dir; // <-------------------------------------------------------------------
+
+    var cellId = "#" + getCellId(row, col);
+    var arrowId = color + "-arrow";
+
+    var src = color + "-arrow.png";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "' class='" + dir + "'>"; // <-------------------
+
+    $(cellId).append(imgTag);
+}
+```
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture04/step04/index.html)
