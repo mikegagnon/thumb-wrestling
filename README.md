@@ -845,6 +845,9 @@ function move(color, direction) {
 }
 ```
 
+Back to [Challenge 1](#c1).
+
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c1hint4">Challenge 1, Hint 4</a>
@@ -883,6 +886,9 @@ function drawArrow(color) {
     $(cellId).append(imgTag);
 }
 ```
+
+Back to [Challenge 1](#c1).
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -953,6 +959,8 @@ function drawArrow(color) {
 }
 ```
 
+Back to [Challenge 1](#c1).
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c2hint1">Challenge 2, Hint 1</a>
@@ -976,12 +984,17 @@ function move(color, direction) {
 }
 ```
 
+Back to [Challenge 2](#c2).
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c2hint2">Challenge 2, Hint 2</a>
 
 You want to update  `gameStatep[color].dir` and call `drawArrow(...)` regardless of whether 
 the movement succeeds or the movement is cancelled (because the movement would go out of bounds).
+
+Back to [Challenge 2](#c2).
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -1012,3 +1025,6 @@ function move(color, direction) {
     drawArrow(color);
 }
 ```
+
+Back to [Challenge 2](#c2).
+
