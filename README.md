@@ -833,6 +833,7 @@ For example, to select every cell you could do:
 `$(".cell")`
 
 - [Hint 1](#c5hint1)
+- [Solution](#c5solution)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
