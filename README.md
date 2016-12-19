@@ -795,7 +795,7 @@ Back to [Challenge 1](#c1).
 
 ### <a name="c1hint3">Challenge 1, Hint 3</a>
 
-This is my elegant preferred way of computing the arrow's new row and column:
+This is my preferred way of computing the arrow's new row and column:
 
 ```js
 // returns a 2-tuple [dr, dc], where:
