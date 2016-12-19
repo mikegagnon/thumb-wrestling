@@ -759,25 +759,7 @@ be many duplicate arrows left on the board).
 - [Hint 2](#c1hint2)
 - [Hint 3](#c1hint3)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c1hint1">Challenge 1, Hint 1</a>
 
@@ -786,25 +768,9 @@ There are two steps to handling arrow movement. Every time a movement key is pre
 1. Update the game state
 2. Update the graphical representation
 
+Back to [Challenge 1](#c1).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c1hint2">Challenge 1, Hint 2</a>
 
@@ -822,6 +788,8 @@ function move(color, direction) {
     gameState[color].col = // the arrow's new column
 }
 ```
- 
+
+Back to [Challenge 1](#c1).
+
 
 
