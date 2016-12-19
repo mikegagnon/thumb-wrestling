@@ -835,6 +835,11 @@ For example, to select every cell you could do:
 - [Hint 1](#c5hint1)
 - [Solution](#c5solution)
 
+#### See final result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge05/index.html)
+
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c1hint1">Challenge 1, Hint 1</a>
