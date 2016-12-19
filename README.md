@@ -758,6 +758,7 @@ be many duplicate arrows left on the board).
 - [Hint 1](#c1hint1)
 - [Hint 2](#c1hint2)
 - [Hint 3](#c1hint3)
+- [Hint 4](#c1hint4)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -825,4 +826,41 @@ function move(color, direction) {
 }
 ```
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+### <a name="c1hint4">Challenge 1, Hint 4</a>
+
+Here's how you update the graphical representation to match the new game state:
+
+```js
+function move(color, direction) {
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    gameState[color].row += dr;
+    gameState[color].col += dc;
+
+    drawArrow(color); // <-----------------------------------------------
+}
+```
+
+And modify `drawArrow(...)` to remove the old arrow, before drawing the new arrow:
+
+```js
+function drawArrow(color) {
+    var row = gameState[color].row;
+    var col = gameState[color].col;
+    var dir = gameState[color].dir;
+
+    var cellId = "#" + getCellId(row, col);
+    var arrowId = color + "-arrow";
+
+    var src = color + "-arrow.png";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "' class='" + dir + "'>";
+
+    $("#" + arrowId).remove(); // <--------------------------------------------------------------
+    $(cellId).append(imgTag);
+}
+```
