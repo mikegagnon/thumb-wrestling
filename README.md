@@ -791,5 +791,38 @@ function move(color, direction) {
 
 Back to [Challenge 1](#c1).
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c1hint3">Challenge 1, Hint 3</a>
+
+This is my elegant preferred way of computing the arrow's new row and column:
+
+```js
+// returns a 2-tuple [dr, dc], where:
+//      dr == difference in row
+//      dc == difference in column
+function drdc(direction) {
+    if (direction == "up") {
+        return [-1, 0];
+    } else if (direction == "down") {
+        return [1, 0];
+    } else if (direction == "left") {
+        return [0, -1];
+    } else if (direction == "right") {
+        return [0, 1];
+    } else {
+        console.error("Bad direction: " + direction)
+    }
+}
+
+function move(color, direction) {
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    gameState[color].row += dr;
+    gameState[color].col += dc;
+}
+```
 
 
