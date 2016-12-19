@@ -1198,7 +1198,7 @@ Back to [Challenge 4](#c4).
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-### <a name="c4hsolution">Challenge 4, Solution</a>
+### <a name="c4solution">Challenge 4, Solution</a>
 
 At the top of `thumb-wrestling.js`:
 
