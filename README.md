@@ -801,6 +801,10 @@ Modify `thumb-wrestling.js` to:
 Hints:
 
 - [Hint 1](#c4hint1)
+- [Hint 2](#c4hint2)
+- [Hint 3](#c4hint3)
+- [Hint 4](#c4hint4)
+- [Hint 5](#c4hint5)
 
 #### See result
 
