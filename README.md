@@ -805,6 +805,8 @@ Hints:
 - [Hint 3](#c4hint3)
 - [Hint 4](#c4hint4)
 - [Hint 5](#c4hint5)
+- [Hint 6](#c4hint6)
+- [Solution](#c4solution)
 
 #### See result
 
@@ -1168,6 +1170,86 @@ function move(color, direction) {
 
     if (occupied(newRow, newCol) && !facingEachOther()) { // <-------------------------------------------
         // game over!
+    } else if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) {
+        gameState[color].row = newRow;
+        gameState[color].col = newCol;
+    }
+
+    drawArrow(color);
+}
+```
+
+Back to [Challenge 4](#c4).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c4hint6">Challenge 4, Hint 6</a>
+
+To freeze the game after a victory, create a global boolean variable called `gameOver`
+and initialize it to `false`.
+
+When a victory occurs set `gameOver` to `true`.
+
+All that is left to do, is use is check for `gameOver` every time `move(...)` is invoked.
+
+If `gameOver` is `true`, then what should you do to freeze the game?
+
+Back to [Challenge 4](#c4).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c4hsolution">Challenge 4, Solution</a>
+
+At the top of `thumb-wrestling.js`:
+
+```js
+var numRows = 10;
+var numCols = 10;
+var gameOver = false;
+
+...
+```
+
+Then add `oppositeDirection(...)` and `facingEachOther(...)`:
+
+```js
+function oppositeDirection(direction) {
+    var oppositeMap = {
+        "up": "down",
+        "down": "up",
+        "left": "right",
+        "right": "left"
+    }
+
+    return oppositeMap[direction];
+}
+
+// returns true iff the arrows are facing each other, i.e. the arrows
+// are facing opposite directions
+function facingEachOther() {
+    return gameState["red"].dir == oppositeDirection(gameState["green"].dir);
+}
+
+```
+
+Modify `move(...)` as follows:
+
+```js
+function move(color, direction) {
+
+    if (gameOver) { // <----------------------------------------------------------------------
+        return;
+    }
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    var newRow = gameState[color].row + dr;
+    var newCol = gameState[color].col + dc;
+
+    if (occupied(newRow, newCol) && !facingEachOther()) { // <--------------------------------
+        gameOver = true;
     } else if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) {
         gameState[color].row = newRow;
         gameState[color].col = newCol;
