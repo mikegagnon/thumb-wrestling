@@ -770,6 +770,14 @@ View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge01/ind
 
 Modify `thumb-wrestling.js` so that arrows cannot go out of bounds.
 
+- [Hint 1](#c2hint1)
+- [Hint 2](#c2hint2)
+- [Solution](#c2solution)
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge02/index.html)
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -942,5 +950,65 @@ function drawArrow(color) {
 
     $("#" + arrowId).remove(); // <--------------------------------------------------------------
     $(cellId).append(imgTag);
+}
+```
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c2hint1">Challenge 2, Hint 1</a>
+
+Here's what the old `move(...)` function looks like.
+You can't just update the `gameState` based on `dr` and `dc`.
+First, you need make sure that updating the `gameState`
+won't cause an arrow to go out of bounds.
+
+```js
+function move(color, direction) {
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    gameState[color].row += dr;
+    gameState[color].col += dc;
+
+    drawArrow(color);
+}
+```
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c2hint2">Challenge 2, Hint 2</a>
+
+You want to update  `gameStatep[color].dir` and call `drawArrow(...)` regardless of whether 
+the movement succeeds or the movement is cancelled (because the movement would go out of bounds).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c2solution">Challenge 2, Solution</a>
+
+```js
+function inBounds(row, col) {
+    return row >= 0 &&
+           row < numRows &&
+           col >= 0 &&
+           col < numCols;
+}
+
+function move(color, direction) {
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    var newRow = gameState[color].row + dr;
+    var newCol = gameState[color].col + dc;
+
+    if (inBounds(newRow, newCol)) {
+        gameState[color].row = newRow;
+        gameState[color].col = newCol;
+    }
+
+    drawArrow(color);
 }
 ```
