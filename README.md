@@ -14,6 +14,8 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
   - [Lecture 2. Detecting key presses](#lec2)
   - [Lecture 3. Creating the board](#lec3)
   - [Lecture 4. Arrows](#lec4)
+- [PART 2. CHALLENGES](#part2)
+  - [Challenge 1. Movement](#c1)
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
 
@@ -738,3 +740,7 @@ function drawArrow(color) {
 #### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture04/step04/index.html)
+
+# <a name="part2">PART 2. CHALLENGES</a>
+
+## <a name="c1">Challenge 1. Movement</a>
