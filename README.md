@@ -761,6 +761,11 @@ be many duplicate arrows left on the board).
 - [Hint 4](#c1hint4)
 - [Solution](#c1solution)
 
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge01/index.html)
+
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### <a name="c1hint1">Challenge 1, Hint 1</a>
