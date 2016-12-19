@@ -63,7 +63,7 @@ function drawArrow(color) {
     var arrowId = color + "-arrow";
 
     var src = color + "-arrow.png";
-    var imgTag = "<img id='" + arrowId + "' src='" + src + "''>";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "'>";
 
     $(cellId).append(imgTag);
 }
