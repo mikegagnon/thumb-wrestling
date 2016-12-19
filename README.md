@@ -569,9 +569,11 @@ function drawArrow(color) {
 }
 ```
 
-Its functionality and operation should be clear to you.
+This may be the first time you have seen the HTML `<img>` tag. If so, look it up on Google.
 
-Then, invoke the `drawArrow(...)` function inside the `createThumbWrestling(...)` function:
+Assuming you are familiar with `<img>`, the functionality and operation of `drawArrow(...)` should be clear to you.
+
+Invoke the `drawArrow(...)` function inside the `createThumbWrestling(...)` function:
 
 ```js
 function createThumbWrestling(boardId) {
