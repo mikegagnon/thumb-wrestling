@@ -602,3 +602,85 @@ Notice that both arrows point to the right, even though the green arrow points t
 It should be clear to you why both arrows point to the right.
 
 Soon, we will make the arrows point in the directions according to `gameState`. 
+
+### Step 3. A dash of refactoring
+
+Notice we have code that computes `cellId` twice: once in `drawArrow(...)` and once in `createThumbWrestling(...)`:
+
+```js
+function drawArrow(color) {
+    var row = gameState[color].row;
+    var col = gameState[color].col;
+
+    var cellId = "#cell-" + row + "-" + col; // <----------------------------------------------
+    var arrowId = color + "-arrow";
+
+    var src = color + "-arrow.png";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "''>";
+
+    $(cellId).append(imgTag);
+}
+
+function createThumbWrestling(boardId) {
+
+    for (var row = 0; row < numRows; row++) {
+        var rowId = "row-" + row;
+        var rowTag = "<div id='" + rowId + "' class='row'></div>"
+
+        $(boardId).append(rowTag);
+
+        for (var col = 0; col < numCols; col++) {
+            var cellId = "cell-" + row + "-" + col; // <----------------------------------------------
+            var cellTag = "<div id='" + cellId + "' class='cell'></div>";
+            $("#" + rowId).append(cellTag);
+        }
+    }
+
+    drawArrow("red");
+    drawArrow("green");
+}
+```
+
+We want to avoid code duplication, so we hoist out these computations for `cellId` into a new function:
+
+```js
+function getCellId(row, col) {
+    return "cell-" + row + "-" + col;
+}
+```
+
+Then we modify `drawArrow(...)` and `createThumbWrestling(...)` to invoke our new function:
+
+```js
+function drawArrow(color) {
+    var row = gameState[color].row;
+    var col = gameState[color].col;
+
+    var cellId = "#" + getCellId(row, col); // <----------------------------------------------
+    var arrowId = color + "-arrow";
+
+    var src = color + "-arrow.png";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "''>";
+
+    $(cellId).append(imgTag);
+}
+
+function createThumbWrestling(boardId) {
+
+    for (var row = 0; row < numRows; row++) {
+        var rowId = "row-" + row;
+        var rowTag = "<div id='" + rowId + "' class='row'></div>"
+
+        $(boardId).append(rowTag);
+
+        for (var col = 0; col < numCols; col++) {
+            var cellId = getCellId(row, col); // <----------------------------------------------
+            var cellTag = "<div id='" + cellId + "' class='cell'></div>";
+            $("#" + rowId).append(cellTag);
+        }
+    }
+
+    drawArrow("red");
+    drawArrow("green");
+}
+```
