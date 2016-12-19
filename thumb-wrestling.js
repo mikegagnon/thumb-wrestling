@@ -1,162 +1,19 @@
-
 var numRows = 10;
 var numCols = 10;
 var gameOver = false;
 
-var arrows = {
-    red: {
+var gameState = {
+    "red": {
         row: numRows / 2 - 1,
         col: numCols / 2 - 1,
         dir: "right"
     },
-    green: {
+    "green": {
         row: numRows / 2 - 1 ,
         col: numCols / 2,
         dir: "left"
     }
 };
-
-var colors = ["red", "green"];
-
-document.onkeydown = keydown;
-
-function getOppositeDirection(dir) {
-    if (dir == "up") {
-        return "down";
-    } else if (dir == "down") {
-        return "up";
-    } else if (dir == "left") {
-        return "right";
-    } else if (dir == "right") {
-        return "left";
-    } 
-}
-
-function getOppositeColor(color) {
-    if (color == "red") {
-        return "green";
-    } else if (color == "green") {
-        return "red";
-    } else {
-        console.error("Bad color: " + color);
-    }
-}
-
-function getLightColor(color) {
-    if (color == "red") {
-        return "pink";
-    } else if (color == "green") {
-        return "lightgreen";
-    } else {
-        console.error("Bad color: " + color);
-    }
-}
-
-function getCellId(row, col) {
-    return "#cell-" + row + "-" + col;   
-}
-
-function getArrowId(color) {
-    return color + "-arrow";
-}
-
-function getImgTag(color, dir) {
-    var src = color + "-arrow.png"
-    return "<img id='" + getArrowId(color) + "' src='" + src + "' class='" + dir + "'>"
-}
-
-function createThumbWrestling(boardId) {
-
-    for (var row = 0; row < numRows; row++) {
-        var rowId = "row-" + row;
-        $(boardId).append("<div id='" + rowId + "' class='row'></div>")
-        for (var col = 0; col < numCols; col++) {
-            var cellId = "cell-" + row + "-" + col;
-            $("#" + rowId).append("<div id='" + cellId + "' class='cell'></div>");
-        }
-    }
-
-    for (var i = 0; i < colors.length; i++) {
-        var color = colors[i];
-        var row = arrows[color].row;
-        var col = arrows[color].col;
-        var dir = arrows[color].dir;
-
-        var cellId = getCellId(row, col);
-        var arrowId = getArrowId(color);
-        var imgTag = getImgTag(color, dir);
-
-        $(cellId).append(imgTag);
-    }
-
-}
-
-function drdc(direction) {
-
-    if (direction == "up") {
-        return [-1, 0];
-    } else if (direction == "down") {
-        return [1, 0];
-    } else if (direction == "left") {
-        return [0, -1];
-    } else if (direction == "right") {
-        return [0, 1];
-    } else {
-        console.error("Bad direction: " + direction)
-    }
-
-}
-
-function move(color, direction) {
-
-    arrows[color].dir = direction;
-
-    var [dr, dc] = drdc(direction);
-
-    newRow = arrows[color].row + dr;
-    newCol = arrows[color].col + dc;
-
-    if (newRow < 0 ||
-        newRow >= numRows ||
-        newCol < 0 ||
-        newCol >= numCols) {
-        return;
-    }
-
-    var oppositeColor = getOppositeColor(color);
-
-    var opponentRow = arrows[oppositeColor].row;
-    var opponentCol = arrows[oppositeColor].col;
-    var opponentDirection = arrows[oppositeColor].dir;
-
-    var oppositeDirection = getOppositeDirection(direction);
-
-    var collision = newRow == opponentRow && newCol == opponentCol;
-
-    if (collision && opponentDirection != oppositeDirection) {
-
-        gameOver = true;
-        newRow = arrows[color].row;
-        newCol = arrows[color].col;
-
-        var cellColor = getLightColor(color);
-        $(".cell").css("background-color", cellColor);
-    } else if (collision) {
-        return;
-    } else {
-        arrows[color].row = newRow;
-        arrows[color].col = newCol;
-    }
-
-    var arrowId = getArrowId(color);
-    $("#" + arrowId).remove();
-
-    var cellId = getCellId(newRow, newCol);
-    var imgTag = getImgTag(color, direction);
-
-    $(cellId).append(imgTag);
-
-}
 
 function getPlayerMovment(keyCode) {
 
@@ -176,19 +33,16 @@ function getPlayerMovment(keyCode) {
 
 function keydown(event) {
 
-    if (gameOver) {
-        return;
-    }
-
     var playerMovement = getPlayerMovment(event.keyCode);
 
+    // If the user pressed a key we're uninterested in
     if (playerMovement == undefined) {
         return;
     }
 
     var [color, direction] = playerMovement;
 
-    // diable browser scrolling on arrow keys
+    // disable browser scrolling on arrow keys
     if (color == "red") {
         event.preventDefault();
     }
@@ -196,3 +50,130 @@ function keydown(event) {
     move(color, direction);
 }
 
+// returns a 2-tuple [dr, dc], where:
+//      dr == difference in row
+//      dc == difference in column
+function drdc(direction) {
+    if (direction == "up") {
+        return [-1, 0];
+    } else if (direction == "down") {
+        return [1, 0];
+    } else if (direction == "left") {
+        return [0, -1];
+    } else if (direction == "right") {
+        return [0, 1];
+    } else {
+        console.error("Bad direction: " + direction)
+    }
+}
+
+function inBounds(row, col) {
+    return row >= 0 &&
+           row < numRows &&
+           col >= 0 &&
+           col < numCols;
+}
+
+// returns true iff there is an arrow at (row, col)
+function occupied(row, col) {
+    return (gameState["red"].row == row &&
+            gameState["red"].col == col) ||
+           (gameState["green"].row == row &&
+            gameState["green"].col == col);
+}
+
+function oppositeDirection(direction) {
+    var oppositeMap = {
+        "up": "down",
+        "down": "up",
+        "left": "right",
+        "right": "left"
+    }
+
+    return oppositeMap[direction];
+}
+
+// returns true iff the arrows are facing each other, i.e. the arrows
+// are facing opposite directions
+function facingEachOther() {
+    return gameState["red"].dir == oppositeDirection(gameState["green"].dir);
+}
+
+function drawVictory(color) {
+
+    var cellColor;
+
+    if (color == "green") {
+        cellColor = "lightgreen";
+    } else if (color == "red") {
+        cellColor = "pink";
+    } else {
+        console.error("Bad color: " + color);
+    }
+
+    $(".cell").css("background", cellColor);
+}
+
+function move(color, direction) {
+
+    if (gameOver) {
+        return;
+    }
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    var newRow = gameState[color].row + dr;
+    var newCol = gameState[color].col + dc;
+
+    if (occupied(newRow, newCol) && !facingEachOther()) {
+        gameOver = true;
+        drawVictory(color);
+    } else if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) {
+        gameState[color].row = newRow;
+        gameState[color].col = newCol;
+    }
+
+    drawArrow(color);
+}
+
+document.onkeydown = keydown;
+
+function getCellId(row, col) {
+    return "cell-" + row + "-" + col;
+}
+
+function drawArrow(color) {
+    var row = gameState[color].row;
+    var col = gameState[color].col;
+    var dir = gameState[color].dir;
+
+    var cellId = "#" + getCellId(row, col);
+    var arrowId = color + "-arrow";
+
+    var src = color + "-arrow.png";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "' class='" + dir + "'>";
+
+    $("#" + arrowId).remove();
+    $(cellId).append(imgTag);
+}
+
+function createThumbWrestling(boardId) {
+
+    for (var row = 0; row < numRows; row++) {
+        var rowId = "row-" + row;
+        var rowTag = "<div id='" + rowId + "' class='row'></div>"
+
+        $(boardId).append(rowTag);
+
+        for (var col = 0; col < numCols; col++) {
+            var cellId = getCellId(row, col);
+            var cellTag = "<div id='" + cellId + "' class='cell'></div>";
+            $("#" + rowId).append(cellTag);
+        }
+    }
+
+    drawArrow("red");
+    drawArrow("green");
+}
