@@ -759,6 +759,7 @@ be many duplicate arrows left on the board).
 - [Hint 2](#c1hint2)
 - [Hint 3](#c1hint3)
 - [Hint 4](#c1hint4)
+- [Solution](#c1solution)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -849,6 +850,75 @@ function move(color, direction) {
 And modify `drawArrow(...)` to remove the old arrow, before drawing the new arrow:
 
 ```js
+function drawArrow(color) {
+    var row = gameState[color].row;
+    var col = gameState[color].col;
+    var dir = gameState[color].dir;
+
+    var cellId = "#" + getCellId(row, col);
+    var arrowId = color + "-arrow";
+
+    var src = color + "-arrow.png";
+    var imgTag = "<img id='" + arrowId + "' src='" + src + "' class='" + dir + "'>";
+
+    $("#" + arrowId).remove(); // <--------------------------------------------------------------
+    $(cellId).append(imgTag);
+}
+```
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c1solution">Challenge 1, Solution</a>
+
+```js
+function keydown(event) {
+
+    var playerMovement = getPlayerMovment(event.keyCode);
+
+    // If the user pressed a key we're uninterested in
+    if (playerMovement == undefined) {
+        return;
+    }
+
+    var [color, direction] = playerMovement;
+
+    // disable browser scrolling on arrow keys
+    if (color == "red") {
+        event.preventDefault();
+    }
+
+    move(color, direction); // <--------------------------------------------------------------
+}
+
+// returns a 2-tuple [dr, dc], where:
+//      dr == difference in row
+//      dc == difference in column
+function drdc(direction) {
+    if (direction == "up") {
+        return [-1, 0];
+    } else if (direction == "down") {
+        return [1, 0];
+    } else if (direction == "left") {
+        return [0, -1];
+    } else if (direction == "right") {
+        return [0, 1];
+    } else {
+        console.error("Bad direction: " + direction)
+    }
+}
+
+function move(color, direction) {
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    gameState[color].row += dr;
+    gameState[color].col += dc;
+
+    drawArrow(color);
+}
+
 function drawArrow(color) {
     var row = gameState[color].row;
     var col = gameState[color].col;
