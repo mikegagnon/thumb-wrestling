@@ -744,3 +744,13 @@ View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/lecture04/step0
 # <a name="part2">PART 2. CHALLENGES</a>
 
 ## <a name="c1">Challenge 1. Movement</a>
+
+Modify `thumb-wrestling.js` so that the appropriate arrows move across the board whenever a player presses a movement key (instead of popping up an `alert`).
+
+You do not need to worry about the following cases:
+
+- Going out of bounds
+- Bumping into an opponent
+
+But first, you need to learn a new jQuery method: `$("#" + elementId).remove();` removes the element with `id` equal to `elementId` from the HTML document. This will allow you to remove an arrow before redrawing it (otherwise, there would
+be many duplicate arrows left on the board).
