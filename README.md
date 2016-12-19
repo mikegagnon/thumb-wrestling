@@ -17,6 +17,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
 - [PART 2. CHALLENGES](#part2)
   - [Challenge 1. Movement](#c1)
   - [Challenge 2. Stay in bounds](#c2)
+  - [Challenge 3. Collisions](#c3)
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
 
@@ -778,6 +779,16 @@ Modify `thumb-wrestling.js` so that arrows cannot go out of bounds.
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge02/index.html)
 
+## <a name="c3">Challenge 2. Collisions</a>
+
+Modify `thumb-wrestling.js` so that when one arrow bumps into the other, it stays put.
+
+- [Solution](#c3solution)
+
+#### See result
+
+View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge03/index.html)
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -1028,3 +1039,35 @@ function move(color, direction) {
 
 Back to [Challenge 2](#c2).
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+### <a name="c3solution">Challenge 3, Solution</a>
+
+```js
+// returns true iff there is an arrow at (row, col)
+function occupied(row, col) {
+    return (gameState["red"].row == row &&
+            gameState["red"].col == col) ||
+           (gameState["green"].row == row &&
+            gameState["green"].col == col);
+}
+
+function move(color, direction) {
+
+    gameState[color].dir = direction;
+
+    var [dr, dc] = drdc(direction);
+
+    var newRow = gameState[color].row + dr;
+    var newCol = gameState[color].col + dc;
+
+    if (inBounds(newRow, newCol) && !occupied(newRow, newCol)) { // <-----------------------------------
+        gameState[color].row = newRow;
+        gameState[color].col = newCol;
+    }
+
+    drawArrow(color);
+}
+```
+
+Back to [Challenge 3](#c3).
