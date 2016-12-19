@@ -111,8 +111,6 @@ function drawVictory(color) {
         console.error("Bad color: " + color);
     }
 
-    console.log("foo");
-
     $(".cell").css("background", cellColor);
 }
 
