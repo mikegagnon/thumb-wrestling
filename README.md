@@ -16,6 +16,7 @@ This project assumes you have completed [Becoming dangerous in JS + HTML + CSS](
   - [Lecture 4. Arrows](#lec4)
 - [PART 2. CHALLENGES](#part2)
   - [Challenge 1. Movement](#c1)
+  - [Challenge 2. Stay in bounds](#c2)
 
 # <a name="part1">PART 1. JAVASCRIPT</a>
 
@@ -764,6 +765,10 @@ be many duplicate arrows left on the board).
 #### See result
 
 View [`index.html`](https://mikegagnon.github.io/thumb-wrestling/challenge01/index.html)
+
+## <a name="c2">Challenge 2. Stay in bounds</a>
+
+Modify `thumb-wrestling.js` so that arrows cannot go out of bounds.
 
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
